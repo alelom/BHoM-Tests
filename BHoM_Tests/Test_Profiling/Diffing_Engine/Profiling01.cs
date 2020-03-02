@@ -81,7 +81,7 @@ namespace Test_Profiling
             List<IBHoMObject> currentObjs = Utils.GenerateRandomObjects(typeof(Bar), totalObjs);
 
             // Create Stream. This assigns the Hashes.
-            Revision revision = BH.Engine.Diffing.Create.Revision(currentObjs, diffconfig, "");
+            Revision revision = BH.Engine.Diffing.Create.Revision(currentObjs, "", "", diffconfig);
 
             // Modify randomly half the total of objects.
             var readObjs = revision.Objects.Cast<IBHoMObject>().ToList();
@@ -101,7 +101,7 @@ namespace Test_Profiling
             var timer = new Stopwatch();
             timer.Start();
 
-            Diff diff = BH.Engine.Diffing.Compute.Diffing(revision, updatedRevision, diffconfig);
+            Delta delta = BH.Engine.Diffing.Create.DiffBasedDelta(revision, updatedRevision, diffconfig);
 
             timer.Stop();
 
@@ -110,7 +110,7 @@ namespace Test_Profiling
             string endMessage = $"Total elapsed milliseconds: {ms}";
             Console.WriteLine(endMessage);
 
-            Debug.Assert(diff.ModifiedObjects.Count == totalObjs / 2, "Diffing didn't work.");
+            Debug.Assert(delta.Diff.ModifiedObjects.Count == totalObjs / 2, "Diffing didn't work.");
 
             if (path != null)
             {
