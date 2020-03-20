@@ -110,7 +110,7 @@ namespace Test_Profiling
             string endMessage = $"Total elapsed milliseconds: {ms}";
             Console.WriteLine(endMessage);
 
-            Debug.Assert(delta.Diff.ModifiedObjects.Count == totalObjs / 2, "Diffing didn't work.");
+            Debug.Assert(delta.Diff.ModifiedObjects.Count() == totalObjs / 2, "Diffing didn't work.");
 
             if (path != null)
             {

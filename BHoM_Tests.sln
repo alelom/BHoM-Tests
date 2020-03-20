@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Profiling", "Test_Profiling\Test_Profiling.csproj", "{A1B4F048-33CD-4A87-8978-1ADACC8ABFA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestComponents", "TestComponents\TestComponents.csproj", "{942DE16D-18EB-4DA9-9ECB-386FCDF69021}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ComplianceTestBuild|Any CPU = ComplianceTestBuild|Any CPU
@@ -18,6 +20,12 @@ Global
 		{A1B4F048-33CD-4A87-8978-1ADACC8ABFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B4F048-33CD-4A87-8978-1ADACC8ABFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1B4F048-33CD-4A87-8978-1ADACC8ABFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.ComplianceTestBuild|Any CPU.ActiveCfg = Release|Any CPU
+		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.ComplianceTestBuild|Any CPU.Build.0 = Release|Any CPU
+		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

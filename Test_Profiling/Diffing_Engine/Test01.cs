@@ -96,9 +96,9 @@ namespace Test_Profiling
             // 7. Now Eduardo can push his new delta object (like step 3).
             // `delta.ToCreate` will have 1 object; `delta2.ToUpdate` 1 object; `delta2.ToDelete` 1 object; `delta2.Unchanged` 2 objects.
             // You can also see which properties have changed for what objects: check `delta2.ModifiedPropsPerObject`.
-            Debug.Assert(delta.Diff.NewObjects.Count == 1, "Incorrect number of object identified as new/ToBeCreated.");
-            Debug.Assert(delta.Diff.ModifiedObjects.Count == 1, "Incorrect number of object identified as modified/ToBeUpdated.");
-            Debug.Assert(delta.Diff.OldObjects.Count == 1, "Incorrect number of object identified as old/ToBeDeleted.");
+            Debug.Assert(delta.Diff.NewObjects.Count() == 1, "Incorrect number of object identified as new/ToBeCreated.");
+            Debug.Assert(delta.Diff.ModifiedObjects.Count() == 1, "Incorrect number of object identified as modified/ToBeUpdated.");
+            Debug.Assert(delta.Diff.OldObjects.Count() == 1, "Incorrect number of object identified as old/ToBeDeleted.");
             var modifiedPropsPerObj = delta.Diff.ModifiedPropsPerObject.First().Value;
             Debug.Assert(modifiedPropsPerObj.Count == 1, "Incorrect number of changed properties identified by the property-level diffing.");
             Debug.Assert(modifiedPropsPerObj.First().Key == "Name", "Error in property-level diffing");
