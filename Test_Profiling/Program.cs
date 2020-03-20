@@ -36,13 +36,18 @@ namespace Test_Profiling
             /// Diffing test and profiling methods
             /// ************************************/
 
+            Console.WriteLine("Press any key to start");
+
+            Console.ReadKey();
+
             Diffing_Engine.Test01();
 
             Diffing_Engine.Profiling01();
 
             /// ************************************/
 
-            Console.Read();
+            Console.WriteLine("Press any key to close.");
+            Console.ReadKey();
         }
     }
 }

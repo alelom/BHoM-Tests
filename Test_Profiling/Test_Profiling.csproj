@@ -65,6 +65,9 @@
     <Reference Include="Diffing_oM">
       <HintPath>..\..\..\BHoM\Diffing_oM\obj\Debug\Diffing_oM.dll</HintPath>
     </Reference>
+    <Reference Include="Dimensional_oM">
+      <HintPath>..\..\BHoM\Build\Dimensional_oM.dll</HintPath>
+    </Reference>
     <Reference Include="Geometry_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
     </Reference>
@@ -73,6 +76,9 @@
     </Reference>
     <Reference Include="Reflection_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="Reflection_oM">
+      <HintPath>..\..\BHoM\Build\Reflection_oM.dll</HintPath>
     </Reference>
     <Reference Include="Structure_Engine">
       <HintPath>..\..\..\BHoM_Engine\Build\Structure_Engine.dll</HintPath>
