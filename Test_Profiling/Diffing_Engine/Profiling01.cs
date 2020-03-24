@@ -81,7 +81,7 @@ namespace Test_Profiling
             List<IBHoMObject> currentObjs = Utils.GenerateRandomObjects(typeof(Bar), totalObjs);
 
             // Create Stream. This assigns the Hashes.
-            Revision revision = BH.Engine.Diffing.Create.Revision(currentObjs, "", "", diffconfig);
+            Revision revision = BH.Engine.Diffing.Create.Revision(currentObjs, null, "", diffconfig);
 
             // Modify randomly half the total of objects.
             var readObjs = revision.Objects.Cast<IBHoMObject>().ToList();
@@ -95,13 +95,13 @@ namespace Test_Profiling
             changedList.AddRange(remainingIdx.Select(idx => readObjs.ElementAt(idx)).Cast<IBHoMObject>().ToList());
 
             // Update stream revision
-            Revision updatedRevision = BH.Engine.Diffing.Create.Revision(revision, changedList);
+            Revision updatedRevision = BH.Engine.Diffing.Create.Revision(changedList, null);
 
             // Actual diffing
             var timer = new Stopwatch();
             timer.Start();
 
-            Delta delta = BH.Engine.Diffing.Create.DiffBasedDelta(revision, updatedRevision, diffconfig);
+            Delta delta = BH.Engine.Diffing.Create.Delta(revision, updatedRevision, diffconfig);
 
             timer.Stop();
 

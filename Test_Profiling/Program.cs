@@ -36,9 +36,10 @@ namespace Test_Profiling
             /// Diffing test and profiling methods
             /// ************************************/
 
-            Console.WriteLine("Press any key to start");
+            //Console.WriteLine("Press any key to start");
+            //Console.ReadKey();
 
-            Console.ReadKey();
+            //BH.Engine.Reflection.Query.ExtractAllTypes();
 
             Diffing_Engine.Test01();
 
