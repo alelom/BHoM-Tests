@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Profiling", "Test_Prof
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestComponents", "TestComponents\TestComponents.csproj", "{942DE16D-18EB-4DA9-9ECB-386FCDF69021}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test-TDRepo", "Test-TDRepo\Test-TDRepo.csproj", "{D74FA0A8-8BBA-479B-8FDB-60469A26794A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ComplianceTestBuild|Any CPU = ComplianceTestBuild|Any CPU
@@ -26,6 +28,12 @@ Global
 		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{942DE16D-18EB-4DA9-9ECB-386FCDF69021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D74FA0A8-8BBA-479B-8FDB-60469A26794A}.ComplianceTestBuild|Any CPU.ActiveCfg = Release|Any CPU
+		{D74FA0A8-8BBA-479B-8FDB-60469A26794A}.ComplianceTestBuild|Any CPU.Build.0 = Release|Any CPU
+		{D74FA0A8-8BBA-479B-8FDB-60469A26794A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D74FA0A8-8BBA-479B-8FDB-60469A26794A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D74FA0A8-8BBA-479B-8FDB-60469A26794A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D74FA0A8-8BBA-479B-8FDB-60469A26794A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

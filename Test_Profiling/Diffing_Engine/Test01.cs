@@ -59,7 +59,7 @@ namespace Test_Profiling
             // 2. Alessio wants these bars to be part of a "Portal frame Stream" that will be tracking the objects for future changes.
             // Alessio creates a first revision
             string comment = "Portal Frame Stream";
-            Revision revision_Alessio = Create.Revision(currentObjs_Alessio, null, "", diffConfig, comment); // this will add the hash fragments to the objects
+            Revision revision_Alessio = Create.Revision(currentObjs_Alessio, Guid.NewGuid(), "", comment, diffConfig); // this will add the hash fragments to the objects
 
             // Alessio can now push the Revision.
 
@@ -83,7 +83,7 @@ namespace Test_Profiling
             currentObjs_Eduardo.Insert(1, newBar as dynamic);
 
             // 6. Eduardo updates the Stream Revision.
-            Revision revision_Eduardo = Create.Revision(currentObjs_Eduardo, null);
+            Revision revision_Eduardo = Create.Revision(currentObjs_Eduardo, Guid.NewGuid());
 
             // Eduardo can now push this Stream Revision.
 
