@@ -34,14 +34,20 @@ using System.Security.Cryptography;
 using BH.Engine.Diffing;
 using System.Diagnostics;
 using BH.oM.Diffing;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Test_Profiling
 {
     internal static partial class Diffing_Engine
     {
-        public static void Test01(bool propertyLevelDiffing = true)
+        public static void FullTest(bool propertyLevelDiffing = true)
         {
-            Console.WriteLine("Running Diffing_Engine Test01");
+            string testName = MethodBase.GetCurrentMethod().Name;
+
+            Console.WriteLine($"\nRunning {testName}");
+            Stopwatch sw = Stopwatch.StartNew();
+
             DiffConfig diffConfig = new DiffConfig() { EnablePropertyDiffing = propertyLevelDiffing };
 
             // 1. Suppose Alessio is creating 3 bars in Grasshopper, representing a Portal frame structure.
@@ -63,6 +69,15 @@ namespace Test_Profiling
 
             // Alessio can now push the Revision.
 
+            // Logging hashes
+            long dateTimeTicks = DateTime.UtcNow.Ticks;
+            System.IO.Directory.CreateDirectory(@"C:\temp\BHoM_Tests\Diffing_Engine\");
+            string objs_rev1 = JsonConvert.SerializeObject(revision_Alessio.Objects, Formatting.Indented);
+            string objs_rev1_hashes = JsonConvert.SerializeObject(revision_Alessio.Objects.Select(obj => ((IBHoMObject)obj).Fragments.OfType<IFragment>()), Formatting.Indented);
+            //System.IO.File.WriteAllText($@"C:\temp\BHoM_Tests\Diffing_Engine\Test01_objs-{dateTimeTicks}-rev1.json", objs_rev1);
+            System.IO.File.WriteAllText($@"C:\temp\BHoM_Tests\Diffing_Engine\Test01_objs-{dateTimeTicks}-rev1-hashes.json", objs_rev1_hashes);
+
+
             // 3. Eduardo is now asked to do some changes to the "Portal frame Project" created by Alessio.
             // On his machine, Eduardo now PULLS the Stream from the external platform to read the existing objects.
             IEnumerable<IBHoMObject> readObjs_Eduardo = revision_Alessio.Objects.Select(obj => BH.Engine.Base.Query.DeepClone(obj) as IBHoMObject).ToList();
@@ -82,16 +97,26 @@ namespace Test_Profiling
             newBar.Name = "newBar_1";
             currentObjs_Eduardo.Insert(1, newBar as dynamic);
 
+            // Bar_2 will be unchanged at this point.
+
             // 6. Eduardo updates the Stream Revision.
             Revision revision_Eduardo = Create.Revision(currentObjs_Eduardo, Guid.NewGuid());
 
             // Eduardo can now push this Stream Revision.
+
+            // Logging hashes
+            string objs_rev2 = JsonConvert.SerializeObject(revision_Eduardo.Objects, Formatting.Indented);
+            string objs_rev2_hashes = JsonConvert.SerializeObject(revision_Eduardo.Objects.Select(obj => ((IBHoMObject)obj).Fragments.OfType<IFragment>()), Formatting.Indented);
+            //System.IO.File.WriteAllText($@"C:\temp\BHoM_Tests\Diffing_Engine\Test01_objs-{dateTimeTicks}-rev2.json", objs_rev2);
+            System.IO.File.WriteAllText($@"C:\temp\BHoM_Tests\Diffing_Engine\Test01_objs-{dateTimeTicks}-rev2-hashes.json", objs_rev2_hashes);
 
             // -------------------------------------------------------- //
 
             // Eduardo can also manually check the differences.
 
             Delta delta = BH.Engine.Diffing.Create.Delta(revision_Alessio, revision_Eduardo, diffConfig);
+
+            sw.Stop();
 
             // 7. Now Eduardo can push his new delta object (like step 3).
             // `delta.ToCreate` will have 1 object; `delta2.ToUpdate` 1 object; `delta2.ToDelete` 1 object; `delta2.Unchanged` 2 objects.
@@ -104,7 +129,8 @@ namespace Test_Profiling
             Debug.Assert(modifiedPropsPerObj.First().Key == "Name", "Error in property-level diffing");
             Debug.Assert(modifiedPropsPerObj.First().Value.Item1 as string == "modifiedBar_0", "Error in property-level diffing");
 
-            Console.WriteLine("Test01 concluded successfully.");
+            long timespan = sw.ElapsedMilliseconds;
+            Console.WriteLine($"{testName} concluded successfully in {timespan}");
         }
 
     }

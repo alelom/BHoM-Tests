@@ -30,25 +30,52 @@ namespace Test_Profiling
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args = null)
         {
-            /// ************************************/
-            /// Diffing test and profiling methods
-            /// ************************************/
-
             //Console.WriteLine("Press any key to start");
             //Console.ReadKey();
 
-            //BH.Engine.Reflection.Query.ExtractAllTypes();
 
-            Diffing_Engine.Test01();
+            /// ************************************/
+            /// Diffing tests
+            /// ************************************/
 
-            Diffing_Engine.Profiling01();
+            Diffing_Engine.HashTest_CostantHash();
+
+            Diffing_Engine.HashTest_UnchangedObjectsSameHash();
+
+            Diffing_Engine.RevisionTest();
+
+            Diffing_Engine.FullTest();
+
 
             /// ************************************/
 
-            Console.WriteLine("Press any key to close.");
-            Console.ReadKey();
+
+            Console.WriteLine("Press `Enter` to repeat tests. `Esc` to exit. Any other key to continue on Profiling.");
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.Enter)
+                Main();
+
+            if (keyInfo.Key == ConsoleKey.Escape)
+                return;
+
+            /// ************************************/
+            /// Diffing profiling
+            /// ************************************/
+
+            Diffing_Engine.Profiling();
+
+            /// ************************************/
+
+
+            Console.WriteLine("Press `Enter` to repeat all / any other key to close.");
+
+            keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.Enter)
+                Main();
+
         }
     }
 }
