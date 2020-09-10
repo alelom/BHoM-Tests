@@ -56,7 +56,7 @@ namespace Test_Profiling
             Bar bar = BH.Engine.Structure.Create.Bar(startNode, endNode);
             bar.Name = "bar";
 
-            bar = BH.Engine.Diffing.Modify.SetHistoryFragment(bar);
+            bar = BH.Engine.Diffing.Modify.SetHashFragment(bar);
 
             // Create another bar identical to the first
             Node startNode2 = BH.Engine.Structure.Create.Node(new Point() { X = 0, Y = 0, Z = 0 });
@@ -64,12 +64,12 @@ namespace Test_Profiling
             Bar bar2 = BH.Engine.Structure.Create.Bar(startNode, endNode);
             bar2.Name = "bar";
 
-            bar2 = BH.Engine.Diffing.Modify.SetHistoryFragment(bar2);
+            bar2 = BH.Engine.Diffing.Modify.SetHashFragment(bar2);
 
             if (logging) Logger.Log(new List<object>() { bar, bar2 }, "TwoIdenticalBars", LogOptions.ObjectsAndHashes);
 
             sw.Stop();
-            Debug.Assert(bar.FindFragment<HistoryFragment>().CurrentHash == bar2.FindFragment<HistoryFragment>().CurrentHash);
+            Debug.Assert(bar.FindFragment<HashFragment>().CurrentHash == bar2.FindFragment<HashFragment>().CurrentHash);
 
             long timespan = sw.ElapsedMilliseconds;
             Console.WriteLine($"{testName} concluded successfully in {timespan}");
@@ -90,16 +90,16 @@ namespace Test_Profiling
             Bar bar = BH.Engine.Structure.Create.Bar(startNode, endNode);
             bar.Name = "bar";
 
-            bar = BH.Engine.Diffing.Modify.SetHistoryFragment(bar);
+            bar = BH.Engine.Diffing.Modify.SetHashFragment(bar);
 
             // Think the object is unchanged and passes through another revision.
-            // The following sets its HistoryFragment again. PreviousHash and currentHash will have to be the same.
-            bar = BH.Engine.Diffing.Modify.SetHistoryFragment(bar);
+            // The following sets its HashFragment again. PreviousHash and currentHash will have to be the same.
+            bar = BH.Engine.Diffing.Modify.SetHashFragment(bar);
 
             sw.Stop();
 
-            // Check that the HistoryFragment's PreviousHash and currentHash are the same:
-            Debug.Assert(bar.FindFragment<HistoryFragment>().CurrentHash == bar.FindFragment<HistoryFragment>().PreviousHash);
+            // Check that the HashFragment's PreviousHash and currentHash are the same:
+            Debug.Assert(bar.FindFragment<HashFragment>().CurrentHash == bar.FindFragment<HashFragment>().PreviousHash);
 
             long timespan = sw.ElapsedMilliseconds;
             Console.WriteLine($"{testName} concluded successfully in {timespan}");

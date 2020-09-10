@@ -42,25 +42,25 @@ namespace Test_Profiling
             {
                 // Log hashes
                 var bhoMObjects = allObjs.OfType<IBHoMObject>();
-                var objsWithFragments = allObjs.OfType<IBHoMObject>().Where(obj => obj.Fragments.Contains(typeof(HistoryFragment)));
+                var objsWithFragments = allObjs.OfType<IBHoMObject>().Where(obj => obj.Fragments.Contains(typeof(HashFragment)));
 
                 if (objsWithFragments.Count() > allObjs.OfType<IBHoMObject>().Count())
-                    throw new ArgumentOutOfRangeException("Some object have too many HistoryFragments assigned.");
+                    throw new ArgumentOutOfRangeException("Some object have too many HashFragments assigned.");
 
-                // Extract HistoryFragments
-                List<HistoryFragment> HistoryFragments = allObjs.OfType<IBHoMObject>().SelectMany(obj => obj.Fragments.OfType<HistoryFragment>()).ToList();
+                // Extract HashFragments
+                List<HashFragment> HashFragments = allObjs.OfType<IBHoMObject>().SelectMany(obj => obj.Fragments.OfType<HashFragment>()).ToList();
 
-                if (HistoryFragments.Count > 0 && HistoryFragments.Count == allObjs.OfType<IBHoMObject>().Count())
+                if (HashFragments.Count > 0 && HashFragments.Count == allObjs.OfType<IBHoMObject>().Count())
                 {
-                    // All input BHoMObjects already had HistoryFragments
-                    string objs_hashes = JsonConvert.SerializeObject(HistoryFragments, Formatting.Indented);
+                    // All input BHoMObjects already had HashFragments
+                    string objs_hashes = JsonConvert.SerializeObject(HashFragments, Formatting.Indented);
                     System.IO.File.WriteAllText($@"C:\temp\BHoM_Tests\Diffing_Engine\{testName}_objs-{dateTimeTicks}-{fileSuffix}-hashes.json", objs_hashes);
 
                     return;
                 }
                 else
                 {
-                    throw new ArgumentException("Not all input objects have HistoryFragment assigned.");
+                    throw new ArgumentException("Not all input objects have HashFragment assigned.");
                 }
 
             }
