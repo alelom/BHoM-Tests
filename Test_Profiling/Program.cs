@@ -40,13 +40,30 @@ namespace Test_Profiling
             /// Diffing tests
             /// ************************************/
 
-            Diffing_Engine.HashTest_CostantHash();
 
-            Diffing_Engine.HashTest_UnchangedObjectsSameHash();
+            DiffingTests.HashTest_CostantHash_IdenticalObjs();
 
-            Diffing_Engine.RevisionTest();
+            DiffingTests.HashTest_CostantHash_NumericalPrecision();
 
-            Diffing_Engine.FullTest();
+            DiffingTests.HashTest_HashComparer();
+
+            DiffingTests.HashTest_RemoveDuplicatesByHash();
+
+            DiffingTests.HashTest_PropertiesToConsider();
+
+            DiffingTests.HashTest_PropertyExceptions();
+
+            DiffingTests.HashTest_CheckAgainstStoredHash();
+
+            DiffingTests.RevisionTest_CostantHash_IdenticalObjs();
+
+            DiffingTests.RevisionTest_UnchangedObjectsSameHash();
+
+            DiffingTests.RevisionTest_basic();
+
+            DiffingTests.RevisionTest_advanced();
+
+            DiffingTests.IDiffingTest_HashDiffing();
 
 
             /// ************************************/
@@ -65,7 +82,7 @@ namespace Test_Profiling
             /// Diffing profiling
             /// ************************************/
 
-            Diffing_Engine.Profiling();
+            DiffingTests.Profiling();
 
             /// ************************************/
 

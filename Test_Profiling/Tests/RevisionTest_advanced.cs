@@ -39,16 +39,16 @@ using Newtonsoft.Json;
 
 namespace Test_Profiling
 {
-    internal static partial class Diffing_Engine
+    internal static partial class DiffingTests
     {
-        public static void FullTest(bool propertyLevelDiffing = true)
+        public static void RevisionTest_advanced(bool propertyLevelDiffing = true)
         {
             string testName = MethodBase.GetCurrentMethod().Name;
 
             Console.WriteLine($"\nRunning {testName}");
             Stopwatch sw = Stopwatch.StartNew();
 
-            DiffConfig diffConfig = new DiffConfig() { EnablePropertyDiffing = propertyLevelDiffing };
+            DiffingConfig DiffingConfig = new DiffingConfig() { EnablePropertyDiffing = propertyLevelDiffing };
 
             // 1. Suppose Alessio is creating 3 bars in Grasshopper, representing a Portal frame structure.
             // These will be Alessio's "Current" objects.
@@ -65,7 +65,7 @@ namespace Test_Profiling
             // 2. Alessio wants these bars to be part of a "Portal frame Stream" that will be tracking the objects for future changes.
             // Alessio creates a first revision
             string comment = "Portal Frame Stream";
-            Revision revision_Alessio = Create.Revision(currentObjs_Alessio, Guid.NewGuid(), "", comment, diffConfig); // this will add the hash fragments to the objects
+            Revision revision_Alessio = Create.Revision(currentObjs_Alessio, Guid.NewGuid(), "", comment, DiffingConfig); // this will add the hash fragments to the objects
 
             // Alessio can now push the Revision.
 
@@ -114,7 +114,7 @@ namespace Test_Profiling
 
             // Eduardo can also manually check the differences.
 
-            Delta delta = BH.Engine.Diffing.Create.Delta(revision_Alessio, revision_Eduardo, diffConfig);
+            Delta delta = BH.Engine.Diffing.Create.Delta(revision_Alessio, revision_Eduardo, DiffingConfig);
 
             sw.Stop();
 
@@ -124,13 +124,13 @@ namespace Test_Profiling
             Debug.Assert(delta.Diff.AddedObjects.Count() == 1, "Incorrect number of object identified as new/ToBeCreated.");
             Debug.Assert(delta.Diff.ModifiedObjects.Count() == 1, "Incorrect number of object identified as modified/ToBeUpdated.");
             Debug.Assert(delta.Diff.RemovedObjects.Count() == 1, "Incorrect number of object identified as old/ToBeDeleted.");
-            var modifiedPropsPerObj = delta.Diff.ModifiedPropsPerObject.First().Value;
+            var modifiedPropsPerObj = delta.Diff.ModifiedPropsPerObject?.First().Value;
             Debug.Assert(modifiedPropsPerObj.Count == 1, "Incorrect number of changed properties identified by the property-level diffing.");
             Debug.Assert(modifiedPropsPerObj.First().Key == "Name", "Error in property-level diffing");
             Debug.Assert(modifiedPropsPerObj.First().Value.Item1 as string == "modifiedBar_0", "Error in property-level diffing");
 
             long timespan = sw.ElapsedMilliseconds;
-            Console.WriteLine($"{testName} concluded successfully in {timespan}");
+            Console.WriteLine($"Concluded successfully in {timespan}");
         }
 
     }

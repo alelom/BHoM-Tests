@@ -45,6 +45,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Adapter_oM">
+      <HintPath>..\..\BHoM_Adapter\Build\Adapter_oM.dll</HintPath>
+    </Reference>
     <Reference Include="Analytical_oM, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\Analytical_oM.dll</HintPath>
@@ -52,6 +55,9 @@
     <Reference Include="BHoM, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
+    </Reference>
+    <Reference Include="BHoM_Adapter">
+      <HintPath>..\..\BHoM_Adapter\Build\BHoM_Adapter.dll</HintPath>
     </Reference>
     <Reference Include="BHoM_Engine, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,6 +77,15 @@
     </Reference>
     <Reference Include="Dimensional_oM">
       <HintPath>..\..\BHoM\Build\Dimensional_oM.dll</HintPath>
+    </Reference>
+    <Reference Include="File_Adapter">
+      <HintPath>..\..\..\..\..\ProgramData\BHoM\Assemblies\File_Adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="File_Engine">
+      <HintPath>..\..\..\..\..\ProgramData\BHoM\Assemblies\File_Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="File_oM">
+      <HintPath>..\..\..\..\..\ProgramData\BHoM\Assemblies\File_oM.dll</HintPath>
     </Reference>
     <Reference Include="Geometry_Engine, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -111,12 +126,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests\HashTest.cs" />
-    <Compile Include="Tests\BasicTest.cs" />
+    <Compile Include="Tests\IDiffingTests.cs" />
+    <Compile Include="Tests\HashTests.cs" />
+    <Compile Include="Tests\RevisionTests.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\GenerateRandomObjs.cs" />
     <Compile Include="Profiling\Profiling.cs" />
-    <Compile Include="Tests\FullTest.cs" />
+    <Compile Include="Tests\RevisionTest_advanced.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -38,7 +38,7 @@ using System.Diagnostics;
 
 namespace Test_Profiling
 {
-    internal static partial class Diffing_Engine
+    internal static partial class DiffingTests
     {
         public static void Profiling()
         {
@@ -50,28 +50,28 @@ namespace Test_Profiling
 
             List<int> numberOfObjects = null;
             List<float> percentagesModified = new List<float>() { 0.1F, 0.5F };
-            DiffConfig diffconfig = null;
+            DiffingConfig DiffingConfig = null;
 
             // First profiling. Only collection-level diffing.
             numberOfObjects = new List<int>() { 100, 1000, 2000, 5000, 10000 };
 
-            diffconfig = new DiffConfig() { EnablePropertyDiffing = false };
+            DiffingConfig = new DiffingConfig() { EnablePropertyDiffing = false };
 
-            numberOfObjects.ForEach(objTot => ProfilingTask(objTot, percentagesModified, diffconfig, path));
+            numberOfObjects.ForEach(objTot => ProfilingTask(objTot, percentagesModified, DiffingConfig, path));
 
             // Second profiling. Collection-level + property-level. 
             numberOfObjects = new List<int>() { 100, 1000, 2000, 5000 };
-            diffconfig = new DiffConfig() { EnablePropertyDiffing = true };
+            DiffingConfig = new DiffingConfig() { EnablePropertyDiffing = true };
 
-            numberOfObjects.ForEach(objTot => ProfilingTask(objTot, percentagesModified, diffconfig, path));
+            numberOfObjects.ForEach(objTot => ProfilingTask(objTot, percentagesModified, DiffingConfig, path));
 
             Console.WriteLine("\nProfiling concluded.");
         }
 
-        public static void ProfilingTask(int totalObjs, List<float> percentagesModified, DiffConfig diffconfig, string path = null)
+        public static void ProfilingTask(int totalObjs, List<float> percentagesModified, DiffingConfig DiffingConfig, string path = null)
         {
             string introMessage = $"\n---Diffing for {totalObjs} randomly generated objects.";
-            introMessage += diffconfig.EnablePropertyDiffing ? " Collection-level + property-level." : " Only collection-level.";
+            introMessage += DiffingConfig.EnablePropertyDiffing ? " Collection-level + property-level." : " Only collection-level.";
             introMessage += "---";
             Console.WriteLine(introMessage);
 
@@ -82,7 +82,7 @@ namespace Test_Profiling
             {
                 string fName = Path.GetFileNameWithoutExtension(path);
                 string ext = Path.GetExtension(path);
-                fName += diffconfig.EnablePropertyDiffing ? "_propLevel" : "_onlyCollLevel";
+                fName += DiffingConfig.EnablePropertyDiffing ? "_propLevel" : "_onlyCollLevel";
                 path = Path.Combine(Path.GetDirectoryName(path), fName + ext);
             }
 
@@ -93,7 +93,7 @@ namespace Test_Profiling
             Stopwatch swRev1 = new Stopwatch();
             swRev1.Start();
 
-            Revision revision = BH.Engine.Diffing.Create.Revision(currentObjs, Guid.NewGuid(), "RevisionName", "comment", diffconfig);
+            Revision revision = BH.Engine.Diffing.Create.Revision(currentObjs, Guid.NewGuid(), "RevisionName", "comment", DiffingConfig);
 
             swRev1.Stop();
             Console.WriteLine($"1st Revision (hashComputing) - total elapsed ms: {swRev1.ElapsedMilliseconds}");
@@ -133,7 +133,7 @@ namespace Test_Profiling
                 Stopwatch deltaSw = new Stopwatch();
                 deltaSw.Start();
 
-                Delta delta = BH.Engine.Diffing.Create.Delta(revision, updatedRevision, diffconfig);
+                Delta delta = BH.Engine.Diffing.Create.Delta(revision, updatedRevision, DiffingConfig);
                 Diff diff = delta.Diff;
 
                 deltaSw.Stop();
