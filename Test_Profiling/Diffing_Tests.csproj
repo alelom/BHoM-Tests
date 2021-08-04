@@ -129,6 +129,7 @@
     <Compile Include="Tests\IDiffingTests.cs" />
     <Compile Include="Tests\HashTests.cs" />
     <Compile Include="Tests\RevisionTests.cs" />
+    <Compile Include="Utils\Fragments.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\GenerateRandomObjs.cs" />
     <Compile Include="Profiling\Profiling.cs" />

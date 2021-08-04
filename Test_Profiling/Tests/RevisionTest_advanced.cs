@@ -125,9 +125,9 @@ namespace Test_Profiling
             Debug.Assert(delta.Diff.ModifiedObjects.Count() == 1, "Incorrect number of object identified as modified/ToBeUpdated.");
             Debug.Assert(delta.Diff.RemovedObjects.Count() == 1, "Incorrect number of object identified as old/ToBeDeleted.");
             var modifiedPropsPerObj = delta.Diff.ModifiedPropsPerObject?.First().Value;
-            Debug.Assert(modifiedPropsPerObj.Count == 1, "Incorrect number of changed properties identified by the property-level diffing.");
-            Debug.Assert(modifiedPropsPerObj.First().Key == "Name", "Error in property-level diffing");
-            Debug.Assert(modifiedPropsPerObj.First().Value.Item1 as string == "modifiedBar_0", "Error in property-level diffing");
+            Debug.Assert(modifiedPropsPerObj?.Count == 1, "Incorrect number of changed properties identified by the property-level diffing.");
+            Debug.Assert(modifiedPropsPerObj?.First().Key == "Name", "Error in property-level diffing");
+            Debug.Assert(modifiedPropsPerObj?.First().Value.Item1 as string == "modifiedBar_0", "Error in property-level diffing");
 
             long timespan = sw.ElapsedMilliseconds;
             Console.WriteLine($"Concluded successfully in {timespan}");

@@ -65,6 +65,11 @@ namespace Test_Profiling
 
             DiffingTests.IDiffingTest_HashDiffing();
 
+            DiffingTests.DiffWithFragmentId_allDifferent();
+
+            DiffingTests.DiffWithFragmentId_allEqual();
+
+
 
             /// ************************************/
 
