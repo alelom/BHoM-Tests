@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test_Profiling
+namespace Tests
 {
     public class TestIdFragment : IFragment
     {

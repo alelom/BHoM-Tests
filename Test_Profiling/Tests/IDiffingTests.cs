@@ -39,7 +39,7 @@ using System.IO;
 using Newtonsoft.Json;
 
 
-namespace Test_Profiling
+namespace Tests
 {
     internal static partial class DiffingTests
     {

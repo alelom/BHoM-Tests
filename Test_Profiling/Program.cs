@@ -26,7 +26,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test_Profiling
+namespace Tests
 {
     class Program
     {
@@ -49,7 +49,19 @@ namespace Test_Profiling
 
             DiffingTests.HashTest_RemoveDuplicatesByHash();
 
+            DiffingTests.HashTest_CustomDataToConsider_equalObjects();
+
+            DiffingTests.HashTest_CustomDataToConsider_differentObjects();
+
+            DiffingTests.HashTest_CustomDataToExclude_equalObjects();
+
+            DiffingTests.TypeExceptions();
+
             DiffingTests.HashTest_PropertiesToConsider();
+
+            DiffingTests.HashTest_PropertiesToConsider_subProps();
+
+            DiffingTests.HashTest_PropertiesToConsider_samePropertyNameAtMultipleLevels();
 
             DiffingTests.HashTest_PropertyExceptions();
 
@@ -69,6 +81,7 @@ namespace Test_Profiling
 
             DiffingTests.DiffWithFragmentId_allEqual();
 
+            //RevitDiffing.RevitDiffing_basic();
 
 
             /// ************************************/

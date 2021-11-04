@@ -36,7 +36,7 @@ using BH.Engine.Serialiser;
 using BH.oM.Diffing;
 using System.Diagnostics;
 
-namespace Test_Profiling
+namespace Tests
 {
     internal static partial class DiffingTests
     {

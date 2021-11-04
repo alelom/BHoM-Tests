@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Collections;
 using BH.oM.Diffing;
 
-namespace Test_Profiling
+namespace Tests
 {
     static class Logger
     {

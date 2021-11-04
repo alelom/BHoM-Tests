@@ -38,7 +38,7 @@ using System.IO;
 using Newtonsoft.Json;
 using BH.Engine.Base;
 
-namespace Test_Profiling
+namespace Tests
 {
     internal static partial class DiffingTests
     {
@@ -129,7 +129,7 @@ namespace Test_Profiling
             // First revision
             Revision revision_Alessio = BH.Engine.Diffing.Create.Revision(currentObjs_Alessio, Guid.NewGuid(), "", "", DiffingConfig); // this will add the hash fragments to the objects
 
-            if(logging) Logger.Log(revision_Alessio.Objects, "rev1-hashes", LogOptions.HashesOnly);
+            if (logging) Logger.Log(revision_Alessio.Objects, "rev1-hashes", LogOptions.HashesOnly);
 
             // Prepare second revision
 
@@ -165,6 +165,5 @@ namespace Test_Profiling
             long timespan = sw.ElapsedMilliseconds;
             Console.WriteLine($"Concluded successfully in {timespan}");
         }
-
     }
 }
