@@ -20,11 +20,14 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using BH.oM.Structure.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.Engine.Base;
+using BH.oM.Geometry;
 
 namespace Tests
 {
@@ -32,59 +35,13 @@ namespace Tests
     {
         static void Main(string[] args = null)
         {
-            //Console.WriteLine("Press any key to start");
-            //Console.ReadKey();
 
+            Bar bar = new Bar();
+            IGeometry geom = bar.IGeometry3D();
 
-            /// ************************************/
-            /// Diffing tests
-            /// ************************************/
+            if (geom == null)
+                return;
 
-
-            DiffingTests.HashTest_CostantHash_IdenticalObjs();
-
-            DiffingTests.HashTest_CostantHash_NumericalPrecision();
-
-            DiffingTests.HashTest_HashComparer();
-
-            DiffingTests.HashTest_RemoveDuplicatesByHash();
-
-            DiffingTests.HashTest_CustomDataToConsider_equalObjects();
-
-            DiffingTests.HashTest_CustomDataToConsider_differentObjects();
-
-            DiffingTests.HashTest_CustomDataToExclude_equalObjects();
-
-            DiffingTests.TypeExceptions();
-
-            DiffingTests.HashTest_PropertiesToConsider();
-
-            DiffingTests.HashTest_PropertiesToConsider_subProps();
-
-            DiffingTests.HashTest_PropertiesToConsider_samePropertyNameAtMultipleLevels();
-
-            DiffingTests.HashTest_PropertyExceptions();
-
-            DiffingTests.HashTest_CheckAgainstStoredHash();
-
-            DiffingTests.RevisionTest_CostantHash_IdenticalObjs();
-
-            DiffingTests.RevisionTest_UnchangedObjectsSameHash();
-
-            DiffingTests.RevisionTest_basic();
-
-            DiffingTests.RevisionTest_advanced();
-
-            DiffingTests.IDiffingTest_HashDiffing();
-
-            DiffingTests.DiffWithFragmentId_allDifferent();
-
-            DiffingTests.DiffWithFragmentId_allEqual();
-
-            //RevitDiffing.RevitDiffing_basic();
-
-
-            /// ************************************/
 
 
             Console.WriteLine("Press `Enter` to repeat tests. `Esc` to exit. Any other key to continue on Profiling.");
@@ -95,14 +52,6 @@ namespace Tests
 
             if (keyInfo.Key == ConsoleKey.Escape)
                 return;
-
-            /// ************************************/
-            /// Diffing profiling
-            /// ************************************/
-
-            DiffingTests.Profiling();
-
-            /// ************************************/
 
 
             Console.WriteLine("Press `Enter` to repeat all / any other key to close.");
